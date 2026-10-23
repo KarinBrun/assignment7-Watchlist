@@ -1,6 +1,25 @@
+import { useMovies } from '../contexts/MovieContext';
 
-function MovieCard({ movie, favorites = [], addFavorite, removeFavorite }) {
+
+function MovieCard({
+  movie,
+  favorites = [],
+  addFavorite,
+  removeFavorite
+}) {
   const isFavorite = favorites.some((fav) => fav.id === movie.id);
+
+  const { watchlist, addToWatchlist, removeFromWatchlist } = useMovies();
+
+  const isInWatchlist = watchlist.some((item) => item.id === movie.id);
+
+  const handleWatchlistClick = () => {
+    if (isInWatchlist) {
+      removeFromWatchlist(movie.id);
+    } else {
+      addToWatchlist(movie);
+    }
+  };
 
   const handleFavoriteClick = () => {
     if (isFavorite) {
@@ -30,12 +49,19 @@ function MovieCard({ movie, favorites = [], addFavorite, removeFavorite }) {
             {movie.release_date?.substring(0, 4)}
           </span>
         </div>
-        <button
-          className="favorite-button"
-          onClick={handleFavoriteClick}
-        >
-          {isFavorite ? '♥ Remove from Favorites' : '♡ Add to Favorites'}
-        </button>
+          <button
+            className="favorite-button"
+            onClick={handleFavoriteClick}
+          >
+            {isFavorite ? '♥ Remove from Favorites' : '♡ Add to Favorites'}
+          </button>
+
+          <button
+            className="watchlist-button"
+            onClick={handleWatchlistClick}
+          >
+            {isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+          </button>
       </div>
     </div>
   );

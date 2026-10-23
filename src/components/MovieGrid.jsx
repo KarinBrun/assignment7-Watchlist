@@ -1,4 +1,3 @@
-
 import MovieCard from './MovieCard';
 
 function MovieGrid({ movies, favorites, addFavorite, removeFavorite }) {

@@ -1,4 +1,3 @@
-
 import MovieGrid from '../components/MovieGrid';
 
 function Favorites({ favorites, addFavorite, removeFavorite }) {

@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { searchMovies } from '../services/movieService';
@@ -61,6 +60,7 @@ function Header({
 
         <nav className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
+          <Link to="/watchlist" className="nav-link">Watchlist</Link>
           <Link to="/favorites" className="nav-link">Favorites</Link>
         </nav>
 

@@ -1,9 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { MovieProvider } from './contexts/MovieContext';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+import Watchlist from './pages/Watchlist';
 import './App.css';
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
     );
   };
 
-  return (
+return (
+  <MovieProvider>
     <Router>
       <div className="app">
         <Header
@@ -76,9 +78,20 @@ function App() {
               />
             }
           />
+          <Route
+            path="/watchlist"
+            element={
+              <Watchlist
+                favorites={favorites}
+                addFavorite={addFavorite}
+                removeFavorite={removeFavorite}
+              />
+            }
+          />
         </Routes>
       </div>
     </Router>
+  </MovieProvider>
   );
 }
 
